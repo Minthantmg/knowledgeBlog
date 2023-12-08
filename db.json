@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Min Thant Mg",
+      "email": "minthant@gmail.com",
+      "password": "password"
+    },
+    {
+      "name": "Debra Hooper",
+      "email": "ququdegiwa@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "title": "Title 1",
+      "body": "Post content",
+      "id": 1,
+      "userId": 1
+    }
+  ]
+}
