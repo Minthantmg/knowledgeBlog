@@ -1,22 +1,16 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {axiosInstance} from "../../../../util/axiosInstance";
 import {useMutation} from "@tanstack/react-query";
+import {useRouter} from "next/router";
+import {createUser} from "@/app/apis/users";
 
 const Page = () => {
+    const router = useRouter()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
-
-    const createUser = async ({name, email, password}) => {
-        try {
-            const res = await axiosInstance.post('/users', {name, email, password})
-            return res.data
-        } catch (e) {
-            console.log(e)
-        }
-    }
 
     const {
         mutateAsync: createUserAsync
@@ -28,11 +22,17 @@ const Page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await createUserAsync({name: username, email, password})
-        //router push to login
+        await router.push('/dashboard')
         setUsername('')
         setEmail('')
         setPassword('')
     }
+
+    //prefetch
+    useEffect(() => {
+        router.prefetch('/dashboard')
+        },[]
+    )
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="max-w-md mx-auto mt-6">
@@ -88,7 +88,7 @@ const Page = () => {
                         type="submit"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                        Submit
+                        Sign Up
                     </button>
                 </form>
             </div>
