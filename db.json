@@ -5,6 +5,24 @@
       "name": "Min Thant Mg",
       "email": "minthant@gmail.com",
       "password": "password"
+    },
+    {
+      "name": "Alea Stevens",
+      "email": "muhyjeqi@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 2
+    },
+    {
+      "name": "Timothy Rutledge",
+      "email": "jyludyfyr@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 3
+    },
+    {
+      "name": "Brock Bright",
+      "email": "duqav@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "id": 4
     }
   ],
   "posts": [

@@ -1,9 +1,7 @@
 'use client'
 import React, {useEffect, useState} from 'react';
-import {axiosInstance} from "../../../../util/axiosInstance";
-import {useMutation} from "@tanstack/react-query";
-import {useRouter} from "next/router";
-import {createUser} from "@/app/apis/users";
+import {useRouter} from "next/navigation";
+import {useUser} from "../../../../hooks/useUser";
 
 const Page = () => {
     const router = useRouter()
@@ -12,17 +10,13 @@ const Page = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
 
-    const {
-        mutateAsync: createUserAsync
-    } = useMutation({
-        mutationKey: ['post', 'users'],
-        mutationFn: createUser,
-    })
+    const {useUserMutation} = useUser()
+    const {mutateAsync:createUser} = useUserMutation()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await createUserAsync({name: username, email, password})
-        await router.push('/dashboard')
+        await createUser({name: username, email, password})
+        await router.push('/auth/sign-in')
         setUsername('')
         setEmail('')
         setPassword('')
@@ -30,7 +24,7 @@ const Page = () => {
 
     //prefetch
     useEffect(() => {
-        router.prefetch('/dashboard')
+        router.prefetch('/auth/sign-in')
         },[]
     )
     return (
