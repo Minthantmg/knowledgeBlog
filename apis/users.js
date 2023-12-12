@@ -5,6 +5,15 @@ export const createUser = async ({name, email, password}) => {
         const res = await axiosInstance.post('/users', {name, email, password})
         return res.data
     } catch (e) {
-        console.log(e)
+        throw e;
+    }
+}
+
+export const loginUser = async ({email,password}) =>{
+    try {
+        const res = await axiosInstance.post('/login',{email,password})
+        return res.data
+    }catch (e){
+        throw e;
     }
 }

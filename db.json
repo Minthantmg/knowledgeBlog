@@ -1,28 +1,16 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Min Thant Mg",
       "email": "minthant@gmail.com",
-      "password": "password"
+      "password": "$2a$10$6o3KdsHSZAIMuqZRiFV.aO5OrbPes20egXnFBlNzepPMIykcqsOFm",
+      "name": "Min Thant Mg",
+      "id": 1
     },
     {
-      "name": "Alea Stevens",
-      "email": "muhyjeqi@mailinator.com",
-      "password": "Pa$$w0rd!",
+      "email": "min@gmail.com",
+      "password": "$2a$10$0AweSlVge/1JmFY85JZdpObDOXdprYP34nViSXMozuI9zTJwTuGSi",
+      "name": "min",
       "id": 2
-    },
-    {
-      "name": "Timothy Rutledge",
-      "email": "jyludyfyr@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "id": 3
-    },
-    {
-      "name": "Brock Bright",
-      "email": "duqav@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "id": 4
     }
   ],
   "posts": [

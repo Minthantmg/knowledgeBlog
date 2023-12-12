@@ -9,24 +9,37 @@ const Page = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
 
-    const {useUserMutation} = useUser()
-    const {mutateAsync:createUser} = useUserMutation()
+    const {useUserSignInMutation} = useUser()
+    const {mutateAsync: signInUser, isError} = useUserSignInMutation()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await router.push('/dashboard')
-        setEmail('')
-        setPassword('')
+        try {
+            await signInUser({
+                email,
+                password
+            }, {
+                onSuccess: async () => {
+                    await router.push('/dashboard')
+                    setEmail('')
+                    setPassword('')
+                }
+            })
+        }catch (e){
+
+        }
+
     }
 
     //prefetch
     useEffect(() => {
             router.prefetch('/dashboard')
-        },[]
+        }, []
     )
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="max-w-md mx-auto mt-6">
+                {isError && <div className="text-red-500 ml-8">Email or Password not exist</div>}
                 <form method="POST" className="max-w-sm mx-auto" onSubmit={handleSubmit}>
                     <div className="mb-5">
                         <label
