@@ -11,6 +11,12 @@
       "password": "$2a$10$0AweSlVge/1JmFY85JZdpObDOXdprYP34nViSXMozuI9zTJwTuGSi",
       "name": "min",
       "id": 2
+    },
+    {
+      "email": "kuwugubuc@mailinator.com",
+      "password": "$2a$10$Cd5xtPMk4LWjn9S5xQSfiOMlidsQmEyKVPpH3oQZAqciLJLaTsbei",
+      "name": "Brandon Wolf",
+      "id": 3
     }
   ],
   "posts": [

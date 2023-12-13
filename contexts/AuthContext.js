@@ -1,33 +1,50 @@
-import {createContext, useReducer, useState} from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
+import {JS} from "json-server/lib/cli/utils/is";
 
 const initialState = {
     isAuthenticated: false,
     user: null,
+    signIn: (user) => {
+    },
+    signOut: () => {
+    }
 }
-const AuthContext = createContext(initialState)
+export const AuthContext = createContext(initialState)
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState({})
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+    useEffect(() => {
+        const user = localStorage.getItem('user')
+        const isAuthenticated = localStorage.getItem('isAuthenticated')
+        if (user && isAuthenticated){
+            setUser(JSON.parse(user))
+            setIsAuthenticated(JSON.parse(isAuthenticated))
+        }
+    })
+
+
     const signIn = (user) => {
         setUser(user)
         setIsAuthenticated(true)
         //cookies is better use
-        localStorage.setItem('user',JSON.stringify(user))
-        localStorage.setItem('setIsAuthenticated',JSON.stringify(true))
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('setIsAuthenticated', JSON.stringify(true))
     }
 
-    const signOut = () =>{
+    const signOut = () => {
         setUser({})
         setIsAuthenticated(false)
-        localStorage.setItem('user',JSON.stringify({}))
-        localStorage.setItem('setIsAuthenticated',JSON.stringify(false))
+        localStorage.setItem('user', JSON.stringify({}))
+        localStorage.setItem('setIsAuthenticated', JSON.stringify(false))
     }
 
     const value = {
         user,
-        isAuthenticated
+        isAuthenticated,
+        signIn,
+        signOut,
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

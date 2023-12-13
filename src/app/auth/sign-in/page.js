@@ -1,7 +1,8 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useRouter} from "next/navigation";
 import {useUser} from "../../../../hooks/useUser";
+import {AuthContext} from "../../../../contexts/AuthContext";
 
 const Page = () => {
     const router = useRouter()
@@ -12,6 +13,7 @@ const Page = () => {
     const {useUserSignInMutation} = useUser()
     const {mutateAsync: signInUser, isError} = useUserSignInMutation()
 
+    const {signIn} = useContext(AuthContext)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -21,6 +23,10 @@ const Page = () => {
             }, {
                 onSuccess: async () => {
                     await router.push('/dashboard')
+                    signIn({
+                        email,
+                        password,
+                    })
                     setEmail('')
                     setPassword('')
                 }
