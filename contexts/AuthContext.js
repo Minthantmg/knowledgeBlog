@@ -1,5 +1,4 @@
 import {createContext, useEffect, useReducer, useState} from "react";
-import {JS} from "json-server/lib/cli/utils/is";
 
 const initialState = {
     isAuthenticated: false,
@@ -22,7 +21,7 @@ export const AuthProvider = ({children}) => {
             setUser(JSON.parse(user))
             setIsAuthenticated(JSON.parse(isAuthenticated))
         }
-    })
+    },[])
 
 
     const signIn = (user) => {
@@ -30,7 +29,7 @@ export const AuthProvider = ({children}) => {
         setIsAuthenticated(true)
         //cookies is better use
         localStorage.setItem('user', JSON.stringify(user))
-        localStorage.setItem('setIsAuthenticated', JSON.stringify(true))
+        localStorage.setItem('isAuthenticated', JSON.stringify(true))
     }
 
     const signOut = () => {

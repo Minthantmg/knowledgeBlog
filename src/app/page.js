@@ -1,10 +1,18 @@
 'use client'
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {AuthContext} from "../../contexts/AuthContext";
+import {useRouter} from "next/navigation";
 
 const Page = () => {
+    const router = useRouter()
     const {isAuthenticated} = useContext(AuthContext)
-    console.log(isAuthenticated)
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/dashboard')
+        }
+    }, []);
+
     return (
         <div>
             Home Page
